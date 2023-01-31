@@ -41,7 +41,7 @@ app.post("/login", checkCredencialesOK, reportQuery,async (req, res) => {
   try {
     const { email, password } = req.body;
     await verificaCredenciales (email, password);
-    const token = jwt.sign({ email }, secretKey);
+    const token = jwt.sign({ email }, process.env.SECRET_KEY);
     res.send(token);
   } catch ({ code,message }) {
     console.log(message);
